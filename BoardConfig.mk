@@ -10,7 +10,7 @@ TARGET_KERNEL_CONFIG := lineage_trelte_defconfig
 TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # RIL
-BOARD_MODEM_TYPE := ss333
+BOARD_MODEM_TYPE := m7450
 BOARD_PROVIDES_LIBRIL := true
 
 # Recovery
