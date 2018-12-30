@@ -23,6 +23,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     rild \
     libril \
+    libreference-ril \
     libsecril-client \
     libsecril-client-sap \
     modemloader
