@@ -17,4 +17,4 @@ BOARD_PROVIDES_LIBRIL := true
 TARGET_OTA_ASSERT_DEVICE := trelte,treltexx,tre3gxx
 
 # Inherit common board flags
-include device/samsung/trelte-common/trelte-common-vendor.mk
+include device/samsung/trelte-common/BoardConfigCommon.mk
