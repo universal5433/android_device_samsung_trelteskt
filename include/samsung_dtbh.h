@@ -21,8 +21,8 @@
 #define DTBH_MAGIC         "DTBH"
 #define DTBH_VERSION       2
  /* taken from stock dtb.image (strings dtb.img) */
-#define DTBH_PLATFORM      "treltexx"
-#define DTBH_SUBTYPE       "treltexx_eur_open"
+#define DTBH_PLATFORM      "trlte"
+#define DTBH_SUBTYPE       "trlte_eur_open"
  /* Hardcoded entry
   *
   * Taken from /proc/last_kmsg after 'reboot bootloader'
