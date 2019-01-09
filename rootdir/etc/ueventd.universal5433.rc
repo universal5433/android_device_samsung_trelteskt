@@ -1,3 +1,4 @@
+
 # Video nodes
 /dev/mali0                0666   system     system
 /dev/ion                  0666   system     system
@@ -37,13 +38,6 @@
 # v4l-subdev20 is used for DECON Ext WB
 /dev/v4l-subdev20         0660   system     graphics
 /dev/v4l-subdev21         0660   system     graphics
-
-# MobiCore
-/dev/mobicore             0700   system system
-/dev/mobicore-user        0660   radio system
-
-# Secure MEM driver
-/dev/s5p-smem             0660   system     mediadrm
 
 # gscalers
 /dev/video23              0660   media      graphics
@@ -145,9 +139,12 @@
 /dev/bbd_patch            0660   system     system
 /dev/ttyBCM*              0660   system     system
 
-# sensor
-/dev/iio:device*      0760  system   radio
+# MobiCore
+/dev/mobicore             0700   system     system
+/dev/mobicore-user        0666   radio     system
 
+# Secure MEM driver
+/dev/s5p-smem             0660   system     mediadrm
 
 # Governor
 /sys/devices/system/cpu/cpu*   cpufreq/interactive/timer_slack          0660 system system
