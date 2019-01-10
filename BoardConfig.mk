@@ -28,6 +28,7 @@ TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 # RIL
 BOARD_MODEM_TYPE := m7450
 BOARD_PROVIDES_LIBRIL := true
+BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 
 # Recovery
 TARGET_OTA_ASSERT_DEVICE := trelte,treltexx,tre3gxx
