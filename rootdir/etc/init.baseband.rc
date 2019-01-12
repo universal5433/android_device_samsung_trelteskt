@@ -54,21 +54,3 @@ service cpboot-daemon /vendor/bin/cbd -d -tstem7400 -bh -mh -P platform/15540000
     group radio cache inet misc audio sdcard_rw log sdcard_r shell
     seclabel u:r:cpboot-daemon:s0
     disabled
-
-# Radio daemon
-service ril-daemon /vendor/bin/hw/rild -c 1 -l ${rild.libpath}
-    class main
-    socket rild stream 660 system radio
-    socket sap_uim_socket1 stream 660 bluetooth bluetooth
-    socket rild-debug stream 660 system radio
-    user radio
-    group radio cache inet misc audio sdcard_r sdcard_rw log vpn system readproc wakelock
-    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
-
-on property:persist.sys.cpboot=disable
-    stop ril-daemon
-    stop cpboot-daemon
-
-on property:ro.cbd.restart=1
-    restart cpboot-daemon
-    restart ril-daemon
