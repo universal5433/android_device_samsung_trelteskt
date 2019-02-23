@@ -26,7 +26,7 @@ TARGET_KERNEL_CONFIG := lineage_trelteskt_defconfig
 TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # RIL
-BOARD_MODEM_TYPE := ss300
+BOARD_MODEM_TYPE := ss333
 BOARD_PROVIDES_LIBRIL := true
 
 # Recovery
