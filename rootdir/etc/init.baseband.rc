@@ -8,6 +8,8 @@ on init
 
     symlink  /sys/devices/10f24000.mipi-lli /dev/mipi-lli
 
+    write /sys/module/link_device_lli/parameters/pm_enable 0
+
     write /sys/class/net/rmnet0/queues/rx-0/rps_cpus 1
     write /sys/class/net/rmnet1/queues/rx-0/rps_cpus 1
     write /sys/class/net/rmnet2/queues/rx-0/rps_cpus 1
@@ -19,8 +21,6 @@ on init
     write /proc/sys/net/core/netdev_max_backlog 8192
 
 on fs
-    chown radio system /efs
-    chmod 0771 /efs
 # MIF
     chown radio radio /sys/devices/virtual/misc/multipdp/waketime
     chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
@@ -37,20 +37,22 @@ on post-fs-data
 on property:sys.boot_completed=1
     # Symlink directories to access telephony.db and preferred-apn.xml required by cbd
     symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
-    symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs	
-
-# Parse hardware revision (needs to happen before cbd starts)
-service modemloader /system/bin/modemloader
-    class core
-    oneshot
-
-on property:ro.modemloader.done=1
-    enable cpboot-daemon
+    symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
 
 # CP Boot Daemon (CBD)
-service cpboot-daemon /vendor/bin/cbd -d -tstem7400 -bh -mh -P platform/15540000.dwmmc0/by-name/RADIO
+service cpboot-daemon /vendor/bin/cbd -d -t ss300 -b s -m l -p 13
     class main
     user root
-    group radio cache inet misc audio sdcard_rw log sdcard_r shell
-    seclabel u:r:cpboot-daemon:s0
-    disabled
+    group radio cache inet misc audio sdcard_r sdcard_rw log shell
+	seclabel u:r:cpboot-daemon:s0
+
+# RIL
+service ril-daemon /vendor/bin/hw/rild
+    class main
+    user root
+    group radio cache inet misc audio log readproc wakelock
+    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+
+on property:persist.sys.cpboot=disable
+    stop cpboot-daemon
+    stop ril-daemon
