@@ -1,5 +1,5 @@
 # RIL
-rild.libpath=/vendor/lib/libsec-ril.so
+rild.libpath=/system/lib/libsec-ril.so
 ro.ril.hsxpa=1
 ro.ril.gprsclass=10
 ro.ril.telephony.mqanelements=6
