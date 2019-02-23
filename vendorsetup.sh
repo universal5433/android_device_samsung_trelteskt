@@ -1,2 +1,2 @@
-add_lunch_combo lineage_treltexx-userdebug
-add_lunch_combo rr_treltexx-userdebug
+add_lunch_combo lineage_trelteskt-userdebug
+add_lunch_combo rr_trelteskt-userdebug
