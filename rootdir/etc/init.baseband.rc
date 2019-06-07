@@ -1,7 +1,6 @@
 on init
     # RIL <-> audioserver comm
-    chmod 0644 /proc/cmdline	
-	
+    chmod 0644 /proc/cmdline
     mkdir /efs 0771 radio system
     symlink /dev/block/platform/15540000.dwmmc0/by-name/RADIO /dev/mbin0
     restorecon /dev/mbin0
@@ -25,34 +24,48 @@ on fs
     chown radio radio /sys/devices/virtual/misc/multipdp/waketime
     chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
     chown radio system /sys/devices/virtual/misc/umts_dm0/dm_state
+    chown radio system /efs
+    chmod 0771 /efs
 
-on post-fs-data
-    # Remove symlinks to avoid issues with migrate after nandroid restores
-    # Will be recreated at end of boot
-    rmdir /data/data/com.android.providers.telephony/databases
-    rmdir /data/data/com.android.providers.telephony/shared_prefs
-    rm /data/data/com.android.providers.telephony/databases
-    rm /data/data/com.android.providers.telephony/shared_prefs
-
-on property:sys.boot_completed=1
-    # Symlink directories to access telephony.db and preferred-apn.xml required by cbd
-    symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
-    symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
+on early-boot
+# Assign TCP buffer thresholds to be ceiling value of technology maximums
+# Increased technology maximums should be reflected here.
+    write /proc/sys/net/core/rmem_max 2097152
+    write /proc/sys/net/core/wmem_max 2097152		
 
 # CP Boot Daemon (CBD)
 service cpboot-daemon /vendor/bin/cbd -d -t ss300 -b s -m l -p 13
     class main
     user root
-    group radio cache inet misc audio sdcard_r sdcard_rw log shell
-	seclabel u:r:cpboot-daemon:s0
+    group radio cache inet misc audio sdcard_rw log sdcard_r shell
 
-# RIL
-service ril-daemon /vendor/bin/hw/rild
+service ril-daemon /vendor/bin/hw/rild -c 1 -l /system/lib/libsec-ril.so
     class main
+    socket rild stream 660 root radio
+    socket sap_uim_socket1 stream 660 bluetooth bluetooth
+    socket rild-debug stream 660 radio system
     user root
-    group radio cache inet misc audio log readproc wakelock
-    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
-
+    group radio cache inet misc audio sdcard_r sdcard_rw diag log readproc wakelock
+    onrestart restart cpboot-daemon
+on property:ro.cbd.restart=1
+    restart cpboot-daemon
+    restart ril-daemon
+	
 on property:persist.sys.cpboot=disable
-    stop cpboot-daemon
     stop ril-daemon
+    stop cpboot-daemon	
+	
+on post-fs-data
+    # Remove symlinks to avoid issues with migrate after nandroid restores
+    # Will be recreated at end of boot
+    rm -r -d /data/data/com.android.providers.telephony/databases
+    rm -r -d /data/data/com.android.providers.telephony/shared_prefs
+
+    # Symlink directories to access telephony.db and preferred-apn.xml required by cbd
+    symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
+    symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
+
+    # restart RIL <--> modem stack to account for new locations
+    restart cpboot-daemon
+    restart ril-daemon
+
