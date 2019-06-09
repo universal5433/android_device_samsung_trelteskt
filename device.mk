@@ -67,4 +67,4 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml
 	
 # call the proprietary setup
-$(call inherit-product, vendor/samsung/trelteskt/trelteskt-vendor.mk)
+$(call inherit-product, vendor/samsung/treltexx/treltexx-vendor.mk)
