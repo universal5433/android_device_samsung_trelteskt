@@ -30,7 +30,7 @@ BOARD_MODEM_TYPE := ss333
 BOARD_PROVIDES_LIBRIL := true
 
 # Recovery
-TARGET_OTA_ASSERT_DEVICE := trelteskt,treltelgt,treltektt
+TARGET_OTA_ASSERT_DEVICE := trelteskt,treltelgt,treltektt,trelsktk
 
 # Inherit common board flags
 include device/samsung/trelte-common/BoardConfigCommon.mk
