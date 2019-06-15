@@ -28,7 +28,7 @@
   * Taken from /proc/last_kmsg after 'reboot bootloader'
   */
 #define DTBH_PLATFORM_CODE 0x00003ec3
-#define DTBH_SUBTYPE_CODE  0x3a37307e
+#define DTBH_SUBTYPE_CODE  0xae525f37
 
 /* DTBH_MAGIC + DTBH_VERSION + DTB counts */
 #define DT_HEADER_PHYS_SIZE 12
