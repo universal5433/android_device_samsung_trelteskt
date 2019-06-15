@@ -34,7 +34,7 @@ on early-boot
     write /proc/sys/net/core/wmem_max 2097152		
 
 # CP Boot Daemon (CBD)
-service cpboot-daemon /vendor/bin/cbd -d -t ss300 -b s -m l -p 13
+service cpboot-daemon /vendor/bin/hw/cbd -d -t ss300 -b s -m l -p 13
     class main
     user root
     group radio cache inet misc audio sdcard_rw log sdcard_r shell
