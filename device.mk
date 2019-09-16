@@ -43,12 +43,12 @@ PRODUCT_PACKAGES += \
     libril \
     libsecril-client \
     libsecril-client-sap \
-    Stk \
-	modemloader
+    Stk
 	
 # CPBoot
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/cbd:$(TARGET_COPY_OUT_VENDOR)/bin/hw/cbd	
+    $(LOCAL_PATH)/rootdir/cbd:$(TARGET_COPY_OUT_VENDOR)/bin/hw/cbd \
+    $(LOCAL_PATH)/rootdir/rild.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/rild.legacy.rc
 
 PRODUCT_PACKAGES += \
     SamsungServiceMode
