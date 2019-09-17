@@ -44,8 +44,8 @@ PRODUCT_PACKAGES += \
     libsecril-client \
     libsecril-client-sap \
     Stk
-	
-# CPBoot
+    
+# RILD
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/cbd:$(TARGET_COPY_OUT_VENDOR)/bin/hw/cbd \
     $(LOCAL_PATH)/rootdir/rild.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/rild.legacy.rc
@@ -68,7 +68,7 @@ PRODUCT_COPY_FILES += \
 	
 # Vendor security patch level
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lineage.build.vendor_security_patch=2017-08-01	
+    ro.lineage.build.vendor_security_patch=2017-08-01
 	
 # call the proprietary setup
 $(call inherit-product, vendor/samsung/treltexx/treltexx-vendor.mk)
