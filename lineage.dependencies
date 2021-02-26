@@ -1,6 +1,6 @@
 [
     {
-        "repository": "android_device_samsung_trelte-common",
-        "target_path": "device/samsung/trelte-common"
+        "repository": "android_device_samsung_skt-common",
+        "target_path": "device/samsung/skt-common"
     }
 ]

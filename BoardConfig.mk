@@ -22,15 +22,11 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 # Kernel
 TARGET_KERNEL_CONFIG := lineage_trelteskt_defconfig
 
-# Properties
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
-
-# RIL
-BOARD_MODEM_TYPE := ss333
-BOARD_PROVIDES_LIBRIL := true
-
 # Recovery
 TARGET_OTA_ASSERT_DEVICE := trelteskt,treltelgt,treltektt,trelsktk
 
 # Inherit common board flags
 include device/samsung/trelte-common/BoardConfigCommon.mk
+
+# Inherit common device flags
+include device/samsung/skt-common/BoardConfigCommon.mk

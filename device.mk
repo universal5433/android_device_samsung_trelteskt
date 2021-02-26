@@ -18,40 +18,8 @@ LOCAL_PATH := device/samsung/trelteskt
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    init.baseband.rc \
-    ueventd.universal5433.rc
+    init.baseband.rc
 
-# Audio
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/mixer_paths_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_0.xml
-
-# Radio
-PRODUCT_PACKAGES += \
-    android.hardware.radio@1.0 \
-    android.hardware.radio.deprecated@1.0 \
-    libxml2 \
-    libprotobuf-cpp-full \
-    rild \
-    libril \
-    libsecril-client \
-    libsecril-client-sap \
-    Stk
-    
-# RILD
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/cbd:$(TARGET_COPY_OUT_VENDOR)/bin/hw/cbd \
-    $(LOCAL_PATH)/rootdir/rild.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/rild.legacy.rc
-
-PRODUCT_PACKAGES += \
-    SamsungServiceMode
-
-# Permissions
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml
-	
-# Vendor security patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lineage.build.vendor_security_patch=2017-08-01
 	
 # call the proprietary setup
 $(call inherit-product, vendor/samsung/treltexx/treltexx-vendor.mk)
