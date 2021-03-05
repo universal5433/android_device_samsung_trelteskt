@@ -20,6 +20,8 @@ LOCAL_PATH := device/samsung/trelteskt
 PRODUCT_PACKAGES += \
     init.baseband.rc
 
+# call the skt-common tree
+$(call inherit-product, device/samsung/skt-common/device.mk)
 	
 # call the proprietary setup
 $(call inherit-product, vendor/samsung/treltexx/treltexx-vendor.mk)
