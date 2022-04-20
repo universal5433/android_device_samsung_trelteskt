@@ -34,4 +34,4 @@ lunch omni_trelteskt-eng
 make -j5 recoveryimage
 ```
 
-Kernel sources are available at: https://github.com/universal5433/android_device_samsung_universal5433/
+Kernel sources are available at: https://github.com/universal5433/android_kernel_samsung_universal5433/tree/twrp-7.1
