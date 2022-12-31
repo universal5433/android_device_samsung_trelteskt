@@ -14,10 +14,10 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_trelteskt.mk
+    $(LOCAL_DIR)/aosp_trelteskt.mk
 	
 COMMON_LUNCH_CHOICES := \
-    lineage_trelteskt-user \
-    lineage_trelteskt-userdebug \
-    lineage_trelteskt-eng
+    aosp_trelteskt-user \
+    aosp_trelteskt-userdebug \
+    aosp_trelteskt-eng
 

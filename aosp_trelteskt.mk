@@ -18,11 +18,17 @@
 $(call inherit-product, device/samsung/trelteskt/device.mk)
 $(call inherit-product, device/samsung/trelte-common/device-common.mk)
 
-# Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit common PixelExperience configurations
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+
+TARGET_USES_AOSP_RECOVERY := false
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_INCLUDE_LIVE_WALLPAPERS := true
+TARGET_SUPPORTS_QUICK_TAP := false
+TARGET_GAPPS_ARCH := arm
 
 # Device identifier
-PRODUCT_NAME := lineage_trelteskt
+PRODUCT_NAME := aosp_trelteskt
 PRODUCT_DEVICE := trelteskt
 PRODUCT_BRAND := samsung
 PRODUCT_MODEL := SM-N910S
