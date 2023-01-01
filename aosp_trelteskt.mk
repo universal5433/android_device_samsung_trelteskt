@@ -27,6 +27,9 @@ TARGET_INCLUDE_LIVE_WALLPAPERS := true
 TARGET_SUPPORTS_QUICK_TAP := false
 TARGET_GAPPS_ARCH := arm
 
+# Face Unlock
+TARGET_FACE_UNLOCK_SUPPORTED := true
+
 # Device identifier
 PRODUCT_NAME := aosp_trelteskt
 PRODUCT_DEVICE := trelteskt
